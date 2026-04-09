@@ -234,7 +234,7 @@ document.addEventListener('touchstart', onFirstInteraction, { once: true });
 // Uncomment the line below to immediately test the reveal state
 // without waiting for the real birthday:
 
-window.addEventListener('DOMContentLoaded', () => { triggerReveal(); });
+//window.addEventListener('DOMContentLoaded', () => { triggerReveal(); });
 
 // ─── INIT ────────────────────────────────────────────────────
 createParticles();

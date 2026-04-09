@@ -1,0 +1,596 @@
+/* ===========================
+   CSS VARIABLES & RESET
+   =========================== */
+:root {
+    --purple-deep: #1a0533;
+    --purple-mid: #3b1060;
+    --purple-soft: #6b2fa0;
+    --purple-light: #a855d8;
+    --purple-pale: #c084fc;
+    --purple-blush: #e9d5ff;
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(200, 160, 255, 0.25);
+    --glass-shadow: rgba(90, 30, 150, 0.35);
+    --text-primary: #f3e8ff;
+    --text-soft: #d8b4fe;
+    --text-muted: rgba(216, 180, 254, 0.6);
+    --box-bg: rgba(255, 255, 255, 0.06);
+    --box-hover: rgba(255, 255, 255, 0.13);
+    --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ===========================
+   BODY & ANIMATED BACKGROUND
+   =========================== */
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg,
+            var(--purple-deep) 0%,
+            var(--purple-mid) 30%,
+            #4a1080 55%,
+            #2d0a55 75%,
+            var(--purple-deep) 100%);
+    background-size: 300% 300%;
+    animation: gradientDrift 18s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+@keyframes gradientDrift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===========================
+   FLOATING ORB ELEMENTS
+   =========================== */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+    animation: orbFloat linear infinite;
+}
+
+.orb-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, #9333ea, transparent 70%);
+    top: -100px;
+    left: -100px;
+    animation-duration: 22s;
+}
+
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, #c026d3, transparent 70%);
+    bottom: -80px;
+    right: -80px;
+    animation-duration: 28s;
+    animation-direction: reverse;
+}
+
+.orb-3 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, #7c3aed, transparent 70%);
+    top: 50%;
+    left: 60%;
+    animation-duration: 19s;
+}
+
+.orb-4 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #e879f9, transparent 70%);
+    top: 20%;
+    left: 10%;
+    animation-duration: 24s;
+    animation-direction: reverse;
+}
+
+@keyframes orbFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -40px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 25px) scale(0.95);
+    }
+}
+
+/* ===========================
+   PARTICLE LAYER
+   =========================== */
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(196, 132, 252, 0.5);
+    animation: particleDrift linear infinite;
+}
+
+@keyframes particleDrift {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* ===========================
+   SECTIONS
+   =========================== */
+section {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Fade-in animation for reveal */
+section.fade-in {
+    animation: sectionFadeIn 1.2s ease forwards;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===========================
+   GLASSMORPHISM CARD
+   =========================== */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    box-shadow:
+        0 8px 40px var(--glass-shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    padding: 52px 56px;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    animation: cardAppear 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Sheen overlay */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(105deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.04) 50%,
+            transparent 60%);
+    animation: sheen 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes sheen {
+
+    0%,
+    100% {
+        left: -60%;
+    }
+
+    50% {
+        left: 120%;
+    }
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+.icon-top {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 16px;
+    animation: iconBounce 2.4s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.heading {
+    font-family: 'Georgia', serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: normal;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(192, 132, 252, 0.5);
+}
+
+.subtext {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-bottom: 40px;
+    letter-spacing: 0.03em;
+}
+
+/* ===========================
+   TIMER GRID
+   =========================== */
+.timer-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.timer-box {
+    background: var(--box-bg);
+    border: 1px solid rgba(200, 160, 255, 0.18);
+    border-radius: 16px;
+    padding: 20px 22px 14px;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.timer-box:hover {
+    background: var(--box-hover);
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 12px 32px rgba(120, 50, 200, 0.35);
+}
+
+.timer-value {
+    font-family: 'Georgia', monospace;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: normal;
+    color: var(--purple-blush);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(196, 132, 252, 0.6);
+    letter-spacing: 0.03em;
+    transition: transform 0.15s ease;
+}
+
+.timer-value.tick {
+    animation: tickPulse 0.18s ease;
+}
+
+@keyframes tickPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.timer-label {
+    font-family: 'Georgia', serif;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+.timer-separator {
+    font-size: 2.2rem;
+    color: rgba(200, 160, 255, 0.4);
+    line-height: 1;
+    margin-bottom: 18px;
+    font-weight: 100;
+}
+
+.footer-note {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-style: italic;
+    letter-spacing: 0.04em;
+}
+
+/* ===========================
+   REVEAL CARD
+   =========================== */
+.reveal-card {
+    padding: 56px 52px;
+}
+
+.reveal-heading {
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+    margin-bottom: 20px;
+    animation: revealHeading 1s ease both;
+    animation-delay: 0.3s;
+}
+
+@keyframes revealHeading {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-message {
+    color: var(--text-soft);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    font-style: italic;
+    animation: revealHeading 1s ease both;
+    animation-delay: 0.5s;
+}
+
+/* ===========================
+   SURPRISE BUTTON
+   =========================== */
+.surprise-btn {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    color: var(--purple-deep);
+    background: linear-gradient(135deg, var(--purple-pale), var(--purple-light));
+    border: none;
+    border-radius: 50px;
+    padding: 14px 36px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    box-shadow:
+        0 4px 20px rgba(168, 85, 216, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+    animation: revealHeading 1s ease both;
+    animation-delay: 0.7s;
+    position: relative;
+    overflow: hidden;
+}
+
+.surprise-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.3s ease;
+}
+
+.surprise-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow:
+        0 8px 30px rgba(168, 85, 216, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    filter: brightness(1.08);
+}
+
+.surprise-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ===========================
+   SECRET MESSAGE
+   =========================== */
+.secret-message {
+    margin-top: 32px;
+    animation: letterReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes letterReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hidden-msg {
+    display: none;
+}
+
+.letter-inner {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(200, 160, 255, 0.2);
+    border-radius: 18px;
+    padding: 30px 32px;
+    text-align: left;
+    position: relative;
+}
+
+.letter-icon {
+    display: block;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.letter-inner p {
+    color: var(--text-soft);
+    font-size: 0.98rem;
+    line-height: 1.85;
+    font-style: italic;
+}
+
+.letter-signature {
+    margin-top: 20px !important;
+    color: var(--purple-pale) !important;
+    text-align: right;
+    font-size: 0.9rem !important;
+}
+
+/* ===========================
+   CONFETTI BURST
+   =========================== */
+.confetti-burst {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+    opacity: 0;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(320px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 520px) {
+    .glass-card {
+        padding: 36px 24px;
+        border-radius: 20px;
+    }
+
+    .timer-box {
+        min-width: 68px;
+        padding: 14px 14px 10px;
+    }
+
+    .timer-separator {
+        font-size: 1.6rem;
+    }
+
+    .reveal-card {
+        padding: 36px 24px;
+    }
+}

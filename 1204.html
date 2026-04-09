@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Sonia 🎂</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Floating orbs background -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+
+    <!-- Particles container -->
+    <div id="particles"></div>
+
+    <!-- ===== COUNTDOWN STATE ===== -->
+    <section id="countdown-section">
+        <div class="glass-card" id="countdown-card">
+            <div class="icon-top">🎂</div>
+            <h1 class="heading">Countdown to Sonia's Day</h1>
+            <p class="subtext">Something wonderful is almost here…</p>
+
+            <div class="timer-grid">
+                <div class="timer-box" id="box-days">
+                    <span class="timer-value" id="days">00</span>
+                    <span class="timer-label">Days</span>
+                </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-box" id="box-hours">
+                    <span class="timer-value" id="hours">00</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-box" id="box-minutes">
+                    <span class="timer-value" id="minutes">00</span>
+                    <span class="timer-label">Minutes</span>
+                </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-box" id="box-seconds">
+                    <span class="timer-value" id="seconds">00</span>
+                    <span class="timer-label">Seconds</span>
+                </div>
+            </div>
+
+            <p class="footer-note">Mark your calendar 🗓️</p>
+        </div>
+    </section>
+
+    <!-- ===== REVEAL STATE ===== -->
+    <section id="reveal-section" class="hidden">
+        <div class="glass-card reveal-card" id="reveal-card">
+            <div class="confetti-burst" id="confetti-burst"></div>
+
+            <h1 class="heading reveal-heading">🎉 Happy Birthday Sonia! 🎉</h1>
+            <p class="reveal-message">
+                (You thought it ended with the countdown didn't you ?)
+                Anyway woohoooo the day is finally here, so I decided to take my time and make it a tad bit special for
+                you, cause you honestly deserve it for being such a great friend, to me and all those around you.
+                Happy Birthday Sonyaaaa .<br />
+                Today is <em>all</em> about Sonia. ✨ Ik you love this song, it's a personal fav too.Prime twinning
+                moment.
+            </p>
+
+            <button id="surprise-btn" class="surprise-btn">
+                Open Your Surprise 💌
+            </button>
+
+            <!-- Hidden message revealed on button click -->
+            <div id="secret-message" class="secret-message hidden-msg">
+                <div class="letter-inner">
+                    <span class="letter-icon">💜</span>
+                    <p>
+                        To my raffle hat twin —
+                        Happy Birthday, dearest friend. You deserve every good thing this year has to offer,
+                        every laugh, every adventure, every quiet moment of Sonia's ME time. May the world be kind to
+                        you as you have been to me.
+                        Here's to you — celebrated, cherished, and absolutely adored.
+                    </p>
+                    <p class="letter-signature">— WITH SML, your raffle hat twin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional background music -->
+    <audio id="bg-music" loop>
+        <!-- Replace src with an actual audio file path or URL -->
+        <source src="LYFAD.mp3.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
